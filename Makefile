@@ -17,6 +17,7 @@ CC			=	gcc
 SRCS		=	srcs/main.c \
 				srcs/check.c \
 				srcs/pile.c \
+				srcs/functions.c \
 
 SRCS_BONUS	=
 
@@ -55,7 +56,7 @@ fclean:		clean
 re:			fclean all
 
 test:		all
-			./push_swap 5 8 4 5
+			./push_swap 8 5 6 3 1 2
 
 git:
 	@git add .

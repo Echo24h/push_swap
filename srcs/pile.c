@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/01 12:15:37 by elemarch          #+#    #+#             */
-/*   Updated: 2022/01/25 02:52:53 by gborne           ###   ########.fr       */
+/*   Updated: 2022/01/26 06:01:38 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	pile_fill(t_p *pile, char **list)
 {
-	int	*tmp;
 	int	i;
 
 	i = 1;
-	tmp = pile->nbr;
 	while (list[i])
 	{
-		*tmp = ft_atoi(list[i]);
-		tmp++;
+		pile->nbr[i - 1] = ft_atoi(list[i]);
+		pile->temp_size++;
 		i++;
 	}
 }
@@ -33,6 +31,7 @@ t_p		pile_init(int size)
 
 	pile.nbr = (int*)malloc(sizeof(int) * size);
 	pile.size = size;
+	pile.temp_size = -1;
 	return (pile);
 }
 
@@ -41,9 +40,10 @@ t_p		pile_create(char **list)
 	int	size;
 	t_p	pile;
 
+	size = 0;
 	while (list[size])
 		size++;
-	pile = pile_init(size);
+	pile = pile_init(size - 2);
 	pile_fill(&pile, list);
 	return (pile);
 }
@@ -53,9 +53,13 @@ void	pile_print(t_p pile)
 	int	i;
 
 	i = 0;
-	while (i < pile.size)
+	ft_putchar('|');
+	while (i <= pile.size)
 	{
-		ft_putnbr(pile.nbr[i]);
+		if (i <= pile.temp_size)
+			ft_putnbr(pile.nbr[i]);
+		else
+			ft_putchar(' ');
 		ft_putchar('|');
 		i++;
 	}
@@ -65,5 +69,6 @@ void	pile_print(t_p pile)
 void	pile_destroy(t_p *pile)
 {
 	free(pile->nbr);
-	pile->size = 0;
+	pile->size = -1;
+	pile->temp_size = -1;
 }
