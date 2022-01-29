@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 01:39:38 by gborne           ###   ########.fr       */
+/*   Updated: 2022/01/29 04:15:00 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,14 @@ int	main(int argc, char **argv)
 	char	**list;
 
 	list = create_list(argc, argv);
-	if (!check_list(list))
+	if (argc < 2 || !check_list(list))
 		return (ft_printf("ERROR : La pile n'est pas valide.\n"));
 	a = pile_create(list);
+	free(list);
 	b = pile_init(a.size);
-	if (argc == 2)
-		free(list);
 	pile_print(a);
 	pile_print(b);
-	sort_pile(&a, &b);
+	ft_printf("\nPile de %d nombres triée en %d coups.\n", a.size + 1, sort_pile(&a, &b));
 	pile_destroy(&a);
 	pile_destroy(&b);
 }
