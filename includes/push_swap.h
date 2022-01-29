@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:20:29 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 05:21:01 by gborne           ###   ########.fr       */
+/*   Updated: 2022/01/29 08:13:20 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ char	**check_list(char **list);
 
 // sort.c
 int		sort_pile(t_p *a, t_p *b);
-int		sort_small_stack(t_p *a, t_p *b, int count);
-int		sort_big_stack(t_p *a, t_p *b, int count);
+int		sort_big_stack(t_p *a, t_p *b);
+
+// sort_small_stack.c
+int		sort_small_stack(t_p *a, t_p *b);
+void	sort_small_stack_min(t_p *a, t_p *b, int *count);
 
 // box.c
 int		**box_init(int nb, int size);
@@ -46,7 +49,7 @@ void	pile_destroy(t_p *pile);
 
 // functions.c
 void	swap(t_p *p);
-void	push(t_p *src, t_p *p);
+void	push(t_p *src, t_p *dst);
 void	rotate(t_p *p);
 void	reverse_rotate(t_p *p);
 
