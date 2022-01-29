@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 01:15:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/26 05:12:53 by gborne           ###   ########.fr       */
+/*   Updated: 2022/01/29 01:10:00 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	swap(t_p *p)
 	p->nbr[p->temp_size - 1] = temp;
 }
 
-void	push(t_p *a, t_p *b)
+void	push(t_p *src, t_p *pile)
 {
-	b->temp_size++;
-	b->nbr[b->temp_size] = a->nbr[a->temp_size];
-	a->temp_size--;
+	pile->temp_size++;
+	pile->nbr[pile->temp_size] = src->nbr[src->temp_size];
+	src->temp_size--;
 }
 
 void	rotate(t_p *p)

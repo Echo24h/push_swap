@@ -6,24 +6,51 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/26 05:28:48 by gborne           ###   ########.fr       */
+/*   Updated: 2022/01/29 01:39:38 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+char	**create_list(int argc, char **argv)
+{
+	char	**list;
+	char	*str;
+	int		i;
+
+	list = NULL;
+	str = (char *)malloc(sizeof(char));
+	i = 1;
+	if (argc > 1)
+	{
+		while (argv[i])
+		{
+			str = ft_strjoin(str, argv[i]);
+			str = ft_strjoin(str, " ");
+			i++;
+		}
+	}
+	list = ft_split(str, ' ');
+	free(str);
+	return (list);
+}
+
 int	main(int argc, char **argv)
 {
 	t_p a;
 	t_p b;
-	if (argc < 2 || !check_arg(argv))
-		return (0);
-	a = pile_create(argv);
+	char	**list;
+
+	list = create_list(argc, argv);
+	if (!check_list(list))
+		return (ft_printf("ERROR : La pile n'est pas valide.\n"));
+	a = pile_create(list);
 	b = pile_init(a.size);
-	ft_putchar('\n');
+	if (argc == 2)
+		free(list);
 	pile_print(a);
 	pile_print(b);
+	sort_pile(&a, &b);
 	pile_destroy(&a);
 	pile_destroy(&b);
 }
-

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/01 12:15:37 by elemarch          #+#    #+#             */
-/*   Updated: 2022/01/26 06:01:38 by gborne           ###   ########.fr       */
+/*   Created: 2022/01/29 01:11:16 by gborne            #+#    #+#             */
+/*   Updated: 2022/01/29 01:11:20 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 void	pile_fill(t_p *pile, char **list)
 {
 	int	i;
+	int i_max;
 
-	i = 1;
-	while (list[i])
+	i = 0;
+	i_max = pile->size;
+	while (i <= pile->size)
 	{
-		pile->nbr[i - 1] = ft_atoi(list[i]);
+		pile->nbr[i] = ft_atoi(list[i_max]);
 		pile->temp_size++;
+		i_max--;
 		i++;
 	}
 }
@@ -43,7 +46,7 @@ t_p		pile_create(char **list)
 	size = 0;
 	while (list[size])
 		size++;
-	pile = pile_init(size - 2);
+	pile = pile_init(size - 1);
 	pile_fill(&pile, list);
 	return (pile);
 }

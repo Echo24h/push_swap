@@ -15,6 +15,7 @@
 NAME		=	push_swap
 CC			=	gcc
 SRCS		=	srcs/main.c \
+				srcs/sort.c \
 				srcs/check.c \
 				srcs/pile.c \
 				srcs/functions.c \
