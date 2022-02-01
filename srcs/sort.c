@@ -6,11 +6,32 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 07:18:03 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/01 05:14:55 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	find_the_bigger(t_p *p)
+{
+	int	nb_big;
+	int	i;
+	int	i_big;
+
+	i = -1;
+	i_big = -1;
+	nb_big = -2147483648;
+	while (++i <= p->temp_size)
+	{
+		if(p->nbr[i] >= nb_big)
+		{
+			i_big = i;
+			nb_big = p->nbr[i];
+		}
+	}
+	return (i_big);
+
+}
 
 int	sort_big_stack(t_p *a, t_p *b)
 {

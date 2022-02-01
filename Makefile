@@ -63,7 +63,7 @@ test3:		all
 			./push_swap 8 5 6
 
 test5:		all
-			./push_swap 8 5 6 14 84
+			./push_swap 83 32 6 256 125 84
 
 git:
 	@git add .

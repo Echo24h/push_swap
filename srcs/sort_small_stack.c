@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 08:27:23 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/01 05:25:25 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,9 @@ void	sort_small_stack_min(t_p *a, t_p *b, int *count)
 void	push_the_bigger(t_p *a, t_p *b, int *count)
 {
 	int	i_big;
-	int	nb_big;
-	int	i;
 
-	i = -1;
-	i_big = 0;
-	nb_big = -2147483648;
-	while (++i <= a->temp_size)
-	{
-		if(a->nbr[i] > nb_big)
-		{
-			i_big = i;
-			nb_big = a->nbr[i];
-		}
-	}
-	if (i_big >= 0 && a->temp_size - i_big < a->temp_size / 2)
+	i_big = find_the_bigger(a);
+	if (i_big < a->temp_size / 2)
 	{
 		while (i_big >= 0)
 		{
@@ -47,9 +35,9 @@ void	push_the_bigger(t_p *a, t_p *b, int *count)
 			i_big--;
 		}
 	}
-	else if (i_big <= a->temp_size && a->temp_size - i_big >= a->temp_size / 2)
+	else if (i_big >= a->temp_size / 2)
 	{
-		while (i_big <= a->temp_size)
+		while (i_big < a->temp_size)
 		{
 			*count += command(a, b, "ra");
 			i_big++;
@@ -63,18 +51,19 @@ int	sort_small_stack(t_p *a, t_p *b)
 	int count;
 	int temp;
 
-	count = 0;
+	count = -1;
 	temp = 0;
 	while (a->temp_size > 2)
 		push_the_bigger(a, b, &count);
-	temp = count - 1;
-	while (temp != count)
+	temp = count + 1;
+	while (temp != count && a->temp_size > 0)
 	{
 		count = temp;
 		sort_small_stack_min(a, b, &temp);
 	}
-	count++;
 	while (b->temp_size >= 0)
 		count += command(a, b, "pa");
+	if (count == -1)
+		count++;
 	return (count);
 }

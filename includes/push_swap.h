@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:20:29 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 08:13:20 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/01 05:27:16 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_pile
 
 // check.c
 int		check_max(char **list);
+int		check_min(char **list);
 int		check_double(char **list);
 int		check_nbr(char **list);
 char	**check_list(char **list);
@@ -31,6 +32,7 @@ char	**check_list(char **list);
 // sort.c
 int		sort_pile(t_p *a, t_p *b);
 int		sort_big_stack(t_p *a, t_p *b);
+int		find_the_bigger(t_p *p);
 
 // sort_small_stack.c
 int		sort_small_stack(t_p *a, t_p *b);
