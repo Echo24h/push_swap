@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:20:29 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/01 05:27:16 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/01 05:47:26 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**check_list(char **list);
 int		sort_pile(t_p *a, t_p *b);
 int		sort_big_stack(t_p *a, t_p *b);
 int		find_the_bigger(t_p *p);
+void	push_the_bigger(t_p *a, t_p *b, int *count);
 
 // sort_small_stack.c
 int		sort_small_stack(t_p *a, t_p *b);

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 04:15:00 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/01 06:00:12 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ int	main(int argc, char **argv)
 	a = pile_create(list);
 	free(list);
 	b = pile_init(a.size);
+	ft_printf("\nInitialisation : ");
 	pile_print(a);
-	pile_print(b);
-	ft_printf("\nPile de %d nombres triée en %d coups.\n", a.size + 1, sort_pile(&a, &b));
+	ft_printf("\n\nPile de %d nombres triée en %d coups : ", a.size + 1, sort_pile(&a, &b));
+	pile_print(a);
 	pile_destroy(&a);
 	pile_destroy(&b);
 }
