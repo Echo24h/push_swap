@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:48:52 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/01 05:16:13 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 08:16:14 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_nbr(char **list)
 	int		j;
 
 	i = 0;
+	if (list == NULL || list[0][0] == 0)
+		return (0);
 	while (list[i])
 	{
 		j = 0;
@@ -27,7 +29,7 @@ int	check_nbr(char **list)
 		{
 			if (!ft_isdigit(list[i][j]))
 			{
-				ft_printf("ERROR : check.c -> check_nbr()\n");
+				printf("ERROR : check.c -> check_nbr()\n");
 				return (0);
 			}
 			j++;
@@ -118,11 +120,11 @@ int	check_min(char **list)
 	return (1);
 }
 
-char	**check_list(char **list)
+int	check_list(char **list)
 {
 	if (!list)
-		return (NULL);
+		return (0);
 	if (check_nbr(list) && check_double(list) && check_max(list) && check_min(list))
-		return (list);
-	return (NULL);
+		return (1);
+	return (0);
 }
