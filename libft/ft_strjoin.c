@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 18:17:20 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 12:22:20 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 17:09:43 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char	*ft_strjoin(char *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(dst, s1, ft_strlen(s1) + 1);
 	ft_strlcat(dst, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
+	free(s1);
 	return (dst);
 }

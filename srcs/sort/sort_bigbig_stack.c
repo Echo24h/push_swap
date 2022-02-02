@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 14:18:09 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 16:29:15 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,33 @@ int	sort_bigbig_stack(t_p *a, t_p *b)
 {
 	int	count;
 	int	pivot;
+	int	last_pivot;
+	int	box_size;
+	int	i;
 
 	count = 0;
-	pivot = find_the_pivot(a, 0, a->size);
-	while (a->temp_size >= a->size / 2)
+	i = 1;
+	box_size = a->size / (a->size / 9);
+	pivot = INT_MAX;
+	last_pivot = INT_MAX;
+	ft_printf("\nDEBUT : box_size :%d, pivot :%d, last_pivot :%d\n", box_size, pivot, last_pivot);
+	while (box_size * i <  a->size)
 	{
-		if (a->nbr[a->temp_size] >= pivot)
+		pivot = find_the_pivot(a, 0, a->size, pivot);
+		while (a->temp_size > a->size - (box_size * i))
 		{
-			count += command(a, b, "pb");
+			ft_printf("box_size :%d, pivot :%d, last_pivot :%d", box_size, pivot, last_pivot);
+			if (a->nbr[a->temp_size] > pivot && a->nbr[a->temp_size] < last_pivot)
+			{
+				count += command(a, b, "pb");
+			}
+			else
+				count += command(a, b, "ra");
 		}
-		else
-			count += command(a, b, "ra");
+		i++;
+		sort_b_pile(a, b, &count);
+		last_pivot = pivot;
 	}
-	sort_b_pile(a, b, &count);
-	pivot = a->size / 2 + (a->size % 2);
-	while (a->temp_size != pivot)
-		count += command(a, b, "pb");
-	sort_b_pile(a, b, &count);
+	ft_printf("\nFIN : box_size :%d, pivot :%d, last_pivot :%d\n", box_size, pivot, last_pivot);
 	return (count);
 }
