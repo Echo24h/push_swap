@@ -54,6 +54,7 @@ fclean:		clean
 
 re:			fclean all
 
+## 	" | wc -l "		-> a mettre comme argument pour $m
 
 testdebug:	all
 			./push_swap 1 2 3 4 0 6 5 8 $m
