@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 16:30:08 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 18:00:09 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,23 @@ int	find_the_miner(t_p *p, int start, int end, int value_min)
 	return (i_min);
 }
 
-int	find_the_pivot(t_p *p, int start, int end, int value_max)
+// -1 desactive le compteur
+int	find_the_pivot(t_p *p, int start, int end, int count)
 {
 	int	i_pivot;
 	int	nb_pivot;
 	int	i;
 
 	i_pivot = start;
-	nb_pivot = value_max;
-	i = start + ((end - start) / 2) - 1;
-	while (++i <= end)
+	nb_pivot = INT_MAX;
+	i = start - 1;
+	while (++i <= end && count != 0)
 	{
 		i_pivot = find_the_bigger(p, start, end, nb_pivot - 1);
+		if (i_pivot == -1)
+			return (INT_MIN);
 		nb_pivot = p->nbr[i_pivot];
+		count--;
 	}
 	return (nb_pivot);
 }

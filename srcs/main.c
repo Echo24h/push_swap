@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 17:10:34 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 22:11:30 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ char	**create_list(int argc, char **argv)
 	return (list);
 }
 
+int	is_sort(t_p	*p)
+{
+	int	i;
+	
+	i = 0;
+	while (++i <= p->size)
+		if (p->nbr[i] < p->nbr[i - 1])
+			return (0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_p 	a;
@@ -64,18 +75,20 @@ int	main(int argc, char **argv)
 	if (list == NULL || argc < 2 || !check_list(list))
 	{
 		free_list(list);
-		return (printf("ERROR : La pile n'est pas valide.\n"));
+		return (1);
 	}
 	a = pile_create(list);
 	free_list(list);
 	b = pile_init(a.size);
 	if (a.nbr == NULL || b.nbr == NULL)
 		return (printf("ERROR : La pile n'a pas pu être créer.\n"));
-	printf("\nInitialisation : \n");
+	//printf("\nInitialisation : \n");
+	//pile_print(a);
+	if (!is_sort(&a))
+		sort_pile(&a, &b);
+	//printf("\nPile de %d nombres triée en %d coups :\n", a.size + 1, sort_pile(&a, &b));
 	pile_print(a);
-	printf("\nPile de %d nombres triée en %d coups :\n", a.size + 1, sort_pile(&a, &b));
-	pile_print(a);
-	pile_print(b);
+	//pile_print(b);
 	pile_destroy(&b);
 	pile_destroy(&a);
 	return (0);

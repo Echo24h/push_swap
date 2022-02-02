@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 13:37:19 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 23:00:14 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,14 @@
 void	pile_fill(t_p *pile, char **list)
 {
 	int	i;
-	int i_max;
 
 	i = 0;
-	i_max = pile->size;
 	if (!list)
 		return;
 	while (i <= pile->size)
 	{
-		pile->nbr[i] = ft_atoi(list[i_max]);
+		pile->nbr[i] = ft_atoi(list[i]);
 		pile->temp_size++;
-		i_max--;
 		i++;
 	}
 }

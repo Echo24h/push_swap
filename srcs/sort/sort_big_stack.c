@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 16:28:43 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 17:44:29 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	sort_big_stack(t_p *a, t_p *b)
 	int	pivot;
 
 	count = 0;
-	pivot = find_the_pivot(a, 0, a->size, INT_MAX);
+	pivot = find_the_pivot(a, 0, a->size, -1);
 	while (a->temp_size >= a->size / 2)
 	{
 		if (a->nbr[a->temp_size] >= pivot)

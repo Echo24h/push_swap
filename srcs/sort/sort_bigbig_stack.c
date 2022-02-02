@@ -6,43 +6,57 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 16:29:15 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 23:02:46 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	sort_bigbig_stack(t_p *a, t_p *b)
+int	sort_bigbig_stack(t_p *a, t_p *b, int box_size)
 {
 	int	count;
 	int	pivot;
 	int	last_pivot;
-	int	box_size;
 	int	i;
+	int	rest_sort;
+	int	nb_min;
 
 	count = 0;
 	i = 1;
-	box_size = a->size / (a->size / 9);
 	pivot = INT_MAX;
 	last_pivot = INT_MAX;
-	ft_printf("\nDEBUT : box_size :%d, pivot :%d, last_pivot :%d\n", box_size, pivot, last_pivot);
-	while (box_size * i <  a->size)
+	rest_sort = a->size + 1;
+	nb_min = a->nbr[find_the_miner(a, 0, a->size, INT_MIN)];
+
+
+	while (rest_sort)
 	{
-		pivot = find_the_pivot(a, 0, a->size, pivot);
-		while (a->temp_size > a->size - (box_size * i))
+		sort_b_pile(a, b, &count);
+		pivot = find_the_pivot(a, 0, a->size, box_size * i);
+		if (pivot == INT_MIN)
+			break;
+		while (b->temp_size < box_size - 1)
 		{
-			ft_printf("box_size :%d, pivot :%d, last_pivot :%d", box_size, pivot, last_pivot);
-			if (a->nbr[a->temp_size] > pivot && a->nbr[a->temp_size] < last_pivot)
+			if (pivot == nb_min && b->temp_size == a->size % box_size)
+				break;
+			if (a->nbr[a->temp_size] >= pivot && a->nbr[a->temp_size] < last_pivot)
 			{
 				count += command(a, b, "pb");
+				rest_sort--;
 			}
 			else
 				count += command(a, b, "ra");
 		}
 		i++;
-		sort_b_pile(a, b, &count);
 		last_pivot = pivot;
 	}
-	ft_printf("\nFIN : box_size :%d, pivot :%d, last_pivot :%d\n", box_size, pivot, last_pivot);
+
+	// ont trie le reste
+	i = -1;
+	pivot = find_the_bigger(a, 0, a->size, INT_MAX);
+	while (a->nbr[a->temp_size] != a->nbr[pivot])
+		count += command(a, b, "pb");
+	sort_b_pile(a, b, &count);
+	//ft_printf("\nFIN : box_size :%d, last_pivot :%d\n", box_size, last_pivot);
 	return (count);
 }
