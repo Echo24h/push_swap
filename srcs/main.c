@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 08:18:15 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 13:36:14 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_list(char **list)
 		free(list[i]);
 		i++;
 	}
-	ft_printf("coucou");
 	free(list[i]);
 	free(list);
 }

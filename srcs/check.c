@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:48:52 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 08:16:14 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 11:35:29 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_double(char **list)
 		{
 			if (!ft_strcmp(list[i], list[j]))
 			{
-				ft_printf("ERROR : check.c -> check_double()\n");
+				printf("ERROR : check.c -> check_double()\n");
 				return (0);
 			}
 			j++;
@@ -77,13 +77,13 @@ int	check_max(char **list)
 		{
 			if (ft_strcmp(list[i], "2147483647") > 0)
 			{
-				ft_printf("ERROR : check.c -> check_max()\n");
+				printf("ERROR : check.c -> check_max()\n");
 				return (0);
 			}
 		}
 		else if (is_pos && ft_strlen(list[i]) > ft_strlen("2147483647"))
 		{
-			ft_printf("ERROR : check.c -> check_max()\n");
+			printf("ERROR : check.c -> check_max()\n");
 			return (0);
 		}
 		i++;
@@ -106,13 +106,14 @@ int	check_min(char **list)
 		{
 			if (ft_strcmp(list[i], "-2147483648") > 0)
 			{
-				ft_printf("ERROR : check.c -> check_min()\n");
+				printf("ERROR : check.c -> check_min()\n");
 				return (0);
 			}
 		}
 		else if (is_neg && ft_strlen(list[i]) > ft_strlen("-2147483648"))
 		{
-			ft_printf("ERROR : check.c -> check_min()\n");
+
+			printf("ERROR : check.c -> check_min()\n");
 			return (0);
 		}
 		i++;
