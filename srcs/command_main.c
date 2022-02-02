@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 04:18:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 08:21:57 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 13:48:05 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	command(t_p *a, t_p *b, char *cmd)
 			command_rr(a, b, lst[i]);
 		else
 			command_p_s_r(a, b, lst[i]);
-		//pile_print(*a);
-		//pile_print(*b);
+		pile_print(*a);
+		pile_print(*b);
 	}
 	free_list(lst);
 	return (i);

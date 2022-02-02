@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/01 08:49:11 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 13:49:28 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	sort_small_stack(t_p *a, t_p *b)
 	temp = 0;
 	i_max = find_the_bigger(a, 0, a->temp_size, INT_MAX);
 	while (a->temp_size > 2)
+	{
+		i_max = find_the_bigger(a, 0, a->temp_size, INT_MAX);
 		push_i_nbr_atob(a, b, &count, i_max);
+	}
 	temp = count + 1;
 	while (temp != count && a->temp_size > 0)
 	{
