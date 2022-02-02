@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions_command.c                                :+:      :+:    :+:   */
+/*   command_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 04:18:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/01 05:55:42 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 13:48:05 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,15 @@ int	command(t_p *a, t_p *b, char *cmd)
 	lst = ft_split(cmd, ' ');
 	while (lst[++i])
 	{
-		ft_printf("%s\n", lst[i]);
+		printf("%s\n", lst[i]);
 		if (!ft_strcmp(lst[i], "rra") || !ft_strcmp(lst[i], "rrb")
 			|| !ft_strcmp(lst[i], "rrr"))
 			command_rr(a, b, lst[i]);
 		else
 			command_p_s_r(a, b, lst[i]);
-		//pile_print(*a);
-		//pile_print(*b);
+		pile_print(*a);
+		pile_print(*b);
 	}
+	free_list(lst);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/29 06:39:51 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 13:37:19 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	pile_fill(t_p *pile, char **list)
 
 	i = 0;
 	i_max = pile->size;
+	if (!list)
+		return;
 	while (i <= pile->size)
 	{
 		pile->nbr[i] = ft_atoi(list[i_max]);
@@ -32,7 +34,7 @@ t_p		pile_init(int size)
 {
 	t_p	pile;
 
-	pile.nbr = (int*)malloc(sizeof(int) * size);
+	pile.nbr = ft_calloc(size + 1, sizeof(int));
 	pile.size = size;
 	pile.temp_size = -1;
 	return (pile);
@@ -46,7 +48,8 @@ t_p		pile_create(char **list)
 	size = 0;
 	while (list[size])
 		size++;
-	pile = pile_init(size - 1);
+	size--;
+	pile = pile_init(size);
 	pile_fill(&pile, list);
 	return (pile);
 }

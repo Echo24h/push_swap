@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 18:17:20 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/25 03:34:24 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/02 06:43:48 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE	1024
+# define INT_MAX		2147483647
+# define INT_MIN		-2147483648
 
 //		list related fonctions
 
@@ -65,7 +67,7 @@ int				ft_toupper(int c);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(const char *s1);
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char *s1, char const *s2);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(const char *haystack, const char *needle,
 					size_t len);
