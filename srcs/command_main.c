@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 04:18:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 21:38:34 by gborne           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:27:34 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ void	command_rr(t_p *a, t_p *b, char *cmd)
 	}
 }
 
+/*static void	print_cmd(char *str)
+{
+	if (!ft_strcmp(str, "rra"))
+		write(1, "ra\n", 4);
+	else if (!ft_strcmp(str, "ra"))
+		write(1, "rra\n", 5);
+	else if (!ft_strcmp(str, "rrb"))
+		write(1, "rb\n", 5);
+	else if (!ft_strcmp(str, "rb"))
+		write(1, "rrb\n", 5);
+	else
+		ft_printf("%s\n", str);
+}*/
+
 int	command(t_p *a, t_p *b, char *cmd)
 {
 	char **lst;
@@ -60,7 +74,8 @@ int	command(t_p *a, t_p *b, char *cmd)
 	lst = ft_split(cmd, ' ');
 	while (lst[++i])
 	{
-		printf("%s\n", lst[i]);
+		//print_cmd(lst[i]);
+		ft_printf("%s\n", lst[i]);
 		if (!ft_strcmp(lst[i], "rra") || !ft_strcmp(lst[i], "rrb")
 			|| !ft_strcmp(lst[i], "rrr"))
 			command_rr(a, b, lst[i]);

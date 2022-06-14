@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 22:11:30 by gborne           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:22:30 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ int	main(int argc, char **argv)
 	free_list(list);
 	b = pile_init(a.size);
 	if (a.nbr == NULL || b.nbr == NULL)
-		return (printf("ERROR : La pile n'a pas pu être créer.\n"));
+		return (write(1, "Error\nLa pile n'a pas pu être créer\n", 39));
 	//printf("\nInitialisation : \n");
 	//pile_print(a);
 	if (!is_sort(&a))
 		sort_pile(&a, &b);
 	//printf("\nPile de %d nombres triée en %d coups :\n", a.size + 1, sort_pile(&a, &b));
-	pile_print(a);
+	//pile_print(a);
 	//pile_print(b);
 	pile_destroy(&b);
 	pile_destroy(&a);

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:48:52 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 21:43:38 by gborne           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:08:22 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_nbr(char **list)
 		{
 			if (!ft_isdigit(list[i][j]))
 			{
-				printf("ERROR : check.c -> check_nbr()\n");
+				write(1, "Error\nWrong number\n", 20);
 				return (0);
 			}
 			j++;
@@ -52,7 +52,7 @@ int	check_double(char **list)
 		{
 			if (!ft_strcmp(list[i], list[j]))
 			{
-				printf("ERROR : check.c -> check_double()\n");
+				write(1, "Error\nSimilar number\n", 22);
 				return (0);
 			}
 			j++;
