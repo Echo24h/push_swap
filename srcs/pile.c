@@ -6,13 +6,13 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 23:00:14 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:12:11 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	pile_fill(t_p *pile, char **list)
+static void	pile_fill(t_p *pile, char **list)
 {
 	int	i;
 

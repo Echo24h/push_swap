@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_main.c                                     :+:      :+:    :+:   */
+/*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 04:18:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/03 15:55:43 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:10:03 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	command_p_s_r(t_p *a, t_p *b, char *cmd)
+void shift(t_p *pile, int reverse)
+{
+	int	i;
+	int	temp;
+
+	if (reverse)
+	{
+		temp = pile->nbr[pile->temp_size];
+		i = -1;
+		while(++i < pile->temp_size - 1)
+			pile->nbr[i] = pile->nbr[i + 1];
+		pile->nbr[i] = temp;
+	}
+	else
+	{
+		i = pile->temp_size + 1;
+		while(--i > 0)
+			pile->nbr[i] = pile->nbr[i - 1];
+	}
+}
+
+/*
+static void	command_p_s_r(t_p *a, t_p *b, char *cmd)
 {
 	if (!ft_strcmp(cmd, "pa"))
 		push(b, a);
@@ -38,7 +60,7 @@ void	command_p_s_r(t_p *a, t_p *b, char *cmd)
 	}
 }
 
-void	command_rr(t_p *a, t_p *b, char *cmd)
+static void	command_rr(t_p *a, t_p *b, char *cmd)
 {
 	if (!ft_strcmp(cmd, "rra"))
 		reverse_rotate(a);
@@ -51,7 +73,7 @@ void	command_rr(t_p *a, t_p *b, char *cmd)
 	}
 }
 
-/*static void	print_cmd(char *str)
+static void	print_cmd(char *str)
 {
 	if (!ft_strcmp(str, "rra"))
 		write(1, "ra\n", 4);
@@ -63,27 +85,20 @@ void	command_rr(t_p *a, t_p *b, char *cmd)
 		write(1, "rrb\n", 5);
 	else
 		ft_printf("%s\n", str);
-}*/
+}
 
 int	command(t_p *a, t_p *b, char *cmd)
 {
-	char **lst;
-	int i;
-
-	i= -1;
-	lst = ft_split(cmd, ' ');
-	while (lst[++i])
-	{
-		//print_cmd(lst[i]);
-		ft_printf("%s\n", lst[i]);
-		if (!ft_strcmp(lst[i], "rra") || !ft_strcmp(lst[i], "rrb")
-			|| !ft_strcmp(lst[i], "rrr"))
-			command_rr(a, b, lst[i]);
-		else
-			command_p_s_r(a, b, lst[i]);
-		pile_print(*a);
-		pile_print(*b);
-	}
-	free_list(lst);
-	return (i);
+	//print_cmd(cmd);
+	ft_printf("%s\n", cmd);
+	if (!ft_strcmp(cmd, "rra") || !ft_strcmp(cmd, "rrb")
+		|| !ft_strcmp(cmd, "rrr"))
+		command_rr(a, b, cmd);
+	else
+		command_p_s_r(a, b, cmd);
+	//pile_print(*a);
+	//pile_print(*b);
+	return (1);
 }
+
+*/

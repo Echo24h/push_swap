@@ -6,13 +6,13 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/06/14 17:22:30 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:12:15 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	free_list(char **list)
+static void	free_list(char **list)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ void	free_list(char **list)
 	free(list);
 }
 
-char	**create_list(int argc, char **argv)
+static char	**create_list(int argc, char **argv)
 {
 	char	**list;
 	char	*str;
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	char	**list;
 
 	list = create_list(argc, argv);
-	if (list == NULL || argc < 2 || !check_list(list))
+	if (list == NULL || argc < 2 || !check(list))
 	{
 		free_list(list);
 		return (1);
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	//printf("\nInitialisation : \n");
 	//pile_print(a);
 	if (!is_sort(&a))
-		sort_pile(&a, &b);
+		sort(&a, &b);
 	//printf("\nPile de %d nombres triée en %d coups :\n", a.size + 1, sort_pile(&a, &b));
 	//pile_print(a);
 	//pile_print(b);

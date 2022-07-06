@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small_stack.c                                 :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/03 15:43:05 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:20:12 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	sort_small_stack_min(t_p *a, t_p *b, int *count)
+static void	sort_small_min(t_p *a, t_p *b, int *count)
 {
 	if ((a->temp_size > 1) && (a->nbr[0] > a->nbr[1]))
 		*count += command(a, b, "sa");
@@ -23,7 +23,7 @@ void	sort_small_stack_min(t_p *a, t_p *b, int *count)
 		*count += command(a, b, "ra");
 }
 
-int	sort_small_stack(t_p *a, t_p *b)
+int	sort_small(t_p *a, t_p *b)
 {
 	int	count;
 	int	temp;
@@ -33,14 +33,14 @@ int	sort_small_stack(t_p *a, t_p *b)
 	temp = 0;
 	while (a->temp_size > 2)
 	{
-		i_min = find_the_miner(a, 0, a->temp_size, INT_MIN);
-		push_i_nbr_atob(a, b, &count, i_min);
+		i_min = get_miner(a, 0, a->temp_size, INT_MIN);
+		push_i_atob(a, b, &count, i_min);
 	}
 	temp = count + 1;
 	while (temp != count && a->temp_size > 0)
 	{
 		count = temp;
-		sort_small_stack_min(a, b, &temp);
+		sort_small_min(a, b, &temp);
 	}
 	while (b->temp_size >= 0)
 		count += command(a, b, "pa");

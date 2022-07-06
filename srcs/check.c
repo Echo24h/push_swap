@@ -6,13 +6,13 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:48:52 by gborne            #+#    #+#             */
-/*   Updated: 2022/06/14 17:08:22 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:21:01 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	check_nbr(char **list)
+static int	check_nbr(char **list)
 {
 	int		i;
 	int		j;
@@ -39,7 +39,7 @@ int	check_nbr(char **list)
 	return (1);
 }
 
-int	check_double(char **list)
+static int	check_double(char **list)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ int	check_double(char **list)
 	return (1);
 }
 
-int	check_max(char **list)
+static int	check_max(char **list)
 {
 	int	i;
 	int	is_pos;
@@ -77,13 +77,13 @@ int	check_max(char **list)
 		{
 			if (ft_strcmp(list[i], "2147483647") > 0)
 			{
-				printf("ERROR : check.c -> check_max()\n");
+				ft_printf("ERROR : check.c -> check_max()\n");
 				return (0);
 			}
 		}
 		else if (is_pos && ft_strlen(list[i]) > ft_strlen("2147483647"))
 		{
-			printf("ERROR : check.c -> check_max()\n");
+			ft_printf("ERROR : check.c -> check_max()\n");
 			return (0);
 		}
 		i++;
@@ -91,7 +91,7 @@ int	check_max(char **list)
 	return (1);
 }
 
-int	check_min(char **list)
+static int	check_min(char **list)
 {
 	int	i;
 	int	is_neg;
@@ -121,7 +121,7 @@ int	check_min(char **list)
 	return (1);
 }
 
-int	check_list(char **list)
+int	check(char **list)
 {
 	if (!list)
 		return (0);

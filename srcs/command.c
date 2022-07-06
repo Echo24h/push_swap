@@ -6,34 +6,13 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 01:15:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/03 13:58:33 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:09:59 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void shift(t_p *pile, int reverse)
-{
-	int	i;
-	int	temp;
-
-	if (reverse)
-	{
-		temp = pile->nbr[pile->temp_size];
-		i = -1;
-		while(++i < pile->temp_size - 1)
-			pile->nbr[i] = pile->nbr[i + 1];
-		pile->nbr[i] = temp;
-	}
-	else
-	{
-		i = pile->temp_size + 1;
-		while(--i > 0)
-			pile->nbr[i] = pile->nbr[i - 1];
-	}
-}
-
-void	swap(t_p *p)
+static void	swap(t_p *p)
 {
 	int	temp;
 	temp = p->nbr[1];
@@ -41,7 +20,7 @@ void	swap(t_p *p)
 	p->nbr[0] = temp;
 }
 
-void	push(t_p *src, t_p *dst)
+static void	push(t_p *src, t_p *dst)
 {
 	dst->temp_size++;
 	shift(dst, 0);
@@ -50,7 +29,7 @@ void	push(t_p *src, t_p *dst)
 	src->temp_size--;
 }
 
-void	rotate(t_p *p)
+static void	rotate(t_p *p)
 {
 	int	i;
 	int	temp;
@@ -65,7 +44,7 @@ void	rotate(t_p *p)
 	p->nbr[p->temp_size] = temp;
 }
 
-void	reverse_rotate(t_p *p)
+static void	reverse_rotate(t_p *p)
 {
 	int	i_max;
 	int	temp;
@@ -78,4 +57,28 @@ void	reverse_rotate(t_p *p)
 		i_max--;
 	}
 	p->nbr[0] = temp;
+}
+
+int	command(t_p *a, t_p *b, char *cmd)
+{
+	ft_printf("%s\n", cmd);
+	if (!ft_strcmp(cmd, "pa"))
+		push(b, a);
+	else if (!ft_strcmp(cmd, "pb"))
+		push(a, b);
+	else if (!ft_strcmp(cmd, "sa"))
+		swap(a);
+	else if (!ft_strcmp(cmd, "sb"))
+		swap(b);
+	else if (!ft_strcmp(cmd, "ra"))
+		rotate(a);
+	else if (!ft_strcmp(cmd, "rb"))
+		rotate(b);
+	else if (!ft_strcmp(cmd, "rra"))
+		reverse_rotate(a);
+	else if (!ft_strcmp(cmd, "rrb"))
+		reverse_rotate(b);
+	else
+		return (0);
+	return (1);
 }
