@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 18:54:14 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 19:00:16 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,19 @@ int	is_sort(t_p	*p)
 		if (p->nbr[i] < p->nbr[i - 1])
 			return (0);
 	return (1);
+}
+
+int	sort(t_p *a, t_p *b)
+{
+
+	if (a->size < 6)
+		return (sort_small(a, b));
+	else if ( a->size < 400)
+		return (sort_big(a, b, ((a->size + 1) / 4)));
+	else if ( a->size < 1000)
+		return (sort_big(a, b, ((a->size + 1) / 10)));
+	else
+		return (sort_big(a, b, ((a->size + 1) / 20)));
 }
 
 int	main(int argc, char **argv)
