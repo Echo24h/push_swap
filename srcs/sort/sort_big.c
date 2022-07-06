@@ -6,23 +6,21 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:19:58 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:53:23 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void	sort_b(t_p *a, t_p *b, int *count)
+static void	sort_b(t_p *a, t_p *b)
 {
 	int	i_min;
 	int	i_max;
 	int	i_pivot;
-	int	i_temp;
 
 	i_min = 0;
 	i_max = 0;
 	i_pivot = 0;
-	i_temp = b->temp_size + 1;
 	while (b->temp_size >= 0)
 	{
 		if (b->temp_size > 0)
@@ -31,37 +29,30 @@ static void	sort_b(t_p *a, t_p *b, int *count)
 		i_max = get_bigger(b, 0, b->temp_size, INT_MAX);
 		if (i_pivot - i_min < i_pivot - i_max && i_pivot - i_min < i_max)
 		{
-			push_i_btoa(a, b, count, i_min);
-			*count += command(a, b, "ra");
-			i_temp--;
+			push_i_btoa(a, b, i_min);
+			command(a, b, "ra");
 		}
 		else
-			push_i_btoa(a, b, count, i_max);
+			push_i_btoa(a, b, i_max);
 	}
-	while (--i_temp >= -1)
-		*count += command(a, b, "ra");
 }
 
 int	sort_big(t_p *a, t_p *b, int box_size)
 {
-	int	count;
 	int	pivot;
 	int	last_pivot;
 	int	i;
 	int	rest_sort;
 	int	nb_min;
-
-	count = 0;
+	
 	i = 1;
 	pivot = INT_MAX;
 	last_pivot = INT_MAX;
 	rest_sort = a->size + 1;
 	nb_min = a->nbr[get_miner(a, 0, a->size, INT_MIN)];
-
-
 	while (rest_sort)
 	{
-		sort_b(a, b, &count);
+		sort_b(a, b);
 		pivot = get_pivot(a, 0, a->size, box_size * i);
 		if (pivot == INT_MIN)
 			break;
@@ -71,22 +62,17 @@ int	sort_big(t_p *a, t_p *b, int box_size)
 				break;
 			if (a->nbr[0] >= pivot && a->nbr[0] < last_pivot)
 			{
-				count += command(a, b, "pb");
+				command(a, b, "pb");
 				rest_sort--;
 			}
 			else
-				count += command(a, b, "rra");
+				command(a, b, "ra");
 		}
 		i++;
 		last_pivot = pivot;
 	}
-
-	// ont trie le reste
-	i = -1;
-	pivot = get_bigger(a, 0, a->size, INT_MAX);
-	while (a->nbr[0] != a->nbr[pivot])
-		count += command(a, b, "pb");
-	sort_b(a, b, &count);
-	//ft_printf("\nFIN : box_size :%d, last_pivot :%d\n", box_size, last_pivot);
-	return (count);
+	sort_b(a, b);
+	while(a->nbr[0] != nb_min)
+		command(a, b, "rra");
+	return (1);
 }

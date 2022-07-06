@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:20:35 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:19:09 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	get_miner(t_p *p, int start, int end, int value_min)
 	return (i_min);
 }
 
-// -1 desactive le compteur
-int	get_pivot(t_p *p, int start, int end, int count)
+int	get_pivot(t_p *p, int start, int end, int margin)
 {
 	int	i_pivot;
 	int	nb_pivot;
@@ -60,35 +59,35 @@ int	get_pivot(t_p *p, int start, int end, int count)
 	i_pivot = start;
 	nb_pivot = INT_MAX;
 	i = start - 1;
-	while (++i <= end && count != 0)
+	while (++i <= end && margin != 0)
 	{
 		i_pivot = get_bigger(p, start, end, nb_pivot - 1);
 		if (i_pivot == -1)
 			return (INT_MIN);
 		nb_pivot = p->nbr[i_pivot];
-		count--;
+		margin--;
 	}
 	return (nb_pivot);
 }
 
-void	push_i_atob(t_p *a, t_p *b, int *count, int i_nbr)
+void	push_i_atob(t_p *a, t_p *b, int i_nbr)
 {
 	if (i_nbr >= a->temp_size / 2)
 		while (i_nbr++ != a->temp_size + 1)
-			*count += command(a, b, "rra");
+			command(a, b, "rra");
 	else if (i_nbr < a->temp_size / 2)
 		while (i_nbr-- > 0)
-			*count += command(a, b, "ra");
-	*count += command(a, b, "pb");
+			command(a, b, "ra");
+	command(a, b, "pb");
 }
 
-void	push_i_btoa(t_p *a, t_p *b, int *count, int i_nbr)
+void	push_i_btoa(t_p *a, t_p *b, int i_nbr)
 {
 	if (i_nbr >= b->temp_size / 2)
 		while (i_nbr++ != b->temp_size + 1)
-			*count += command(a, b, "rrb");
+			command(a, b, "rrb");
 	else if (i_nbr < b->temp_size / 2)
 		while (i_nbr-- > 0)
-			*count += command(a, b, "rb");
-	*count += command(a, b, "pa");
+			command(a, b, "rb");
+	command(a, b, "pa");
 }

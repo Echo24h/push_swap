@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:20:29 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:21:49 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 17:30:34 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		sort_big(t_p *a, t_p *b, int box_size);
 // functions.c
 int		get_bigger(t_p *p, int start, int end, int value_max);
 int		get_miner(t_p *p, int start, int end, int value_min);
-int		get_pivot(t_p *p, int start, int end, int value_max);
-void	push_i_atob(t_p *a, t_p *b, int *count, int i_nbr);
-void	push_i_btoa(t_p *a, t_p *b, int *count, int i_nbr);
+int		get_pivot(t_p *p, int start, int end, int margin);
+void	push_i_atob(t_p *a, t_p *b, int i_nbr);
+void	push_i_btoa(t_p *a, t_p *b, int i_nbr);
 
 // pile.c
 t_p		pile_create(char **list);

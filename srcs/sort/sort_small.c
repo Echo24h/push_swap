@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:20:12 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 17:30:03 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,19 @@ int	sort_small(t_p *a, t_p *b)
 	int	temp;
 	int	i_min;
 
-	count = -1;
-	temp = 0;
 	while (a->temp_size > 2)
 	{
 		i_min = get_miner(a, 0, a->temp_size, INT_MIN);
-		push_i_atob(a, b, &count, i_min);
+		push_i_atob(a, b, i_min);
 	}
-	temp = count + 1;
+	count = -1;
+	temp = 0;
 	while (temp != count && a->temp_size > 0)
 	{
 		count = temp;
 		sort_small_min(a, b, &temp);
 	}
 	while (b->temp_size >= 0)
-		count += command(a, b, "pa");
-	if (count == -1)
-		count++;
-	return (count);
+		command(a, b, "pa");
+	return (1);
 }

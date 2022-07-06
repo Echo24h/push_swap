@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 01:15:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:09:59 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:54:20 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ int	command(t_p *a, t_p *b, char *cmd)
 		reverse_rotate(b);
 	else
 		return (0);
+	//pile_print(*a);
+	//pile_print(*b);
 	return (1);
 }
