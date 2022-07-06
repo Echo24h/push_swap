@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 01:15:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 18:54:20 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 19:04:32 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	swap(t_p *p)
 static void	push(t_p *src, t_p *dst)
 {
 	dst->temp_size++;
-	shift(dst, 0);
+	pile_shift(dst, 0);
 	dst->nbr[0] = src->nbr[0];
-	shift(src, 1);
+	pile_shift(src, 1);
 	src->temp_size--;
 }
 

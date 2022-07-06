@@ -6,11 +6,32 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:12:11 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 19:04:35 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void pile_shift(t_p *pile, int reverse)
+{
+	int	i;
+	int	temp;
+
+	if (reverse)
+	{
+		temp = pile->nbr[pile->temp_size];
+		i = -1;
+		while(++i < pile->temp_size - 1)
+			pile->nbr[i] = pile->nbr[i + 1];
+		pile->nbr[i] = temp;
+	}
+	else
+	{
+		i = pile->temp_size + 1;
+		while(--i > 0)
+			pile->nbr[i] = pile->nbr[i - 1];
+	}
+}
 
 static void	pile_fill(t_p *pile, char **list)
 {

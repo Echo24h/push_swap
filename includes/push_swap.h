@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:20:29 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 17:30:34 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/06 19:04:31 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	pile_print(t_p pile);
 void	pile_destroy(t_p *pile);
 
 // command.c
-void	shift(t_p *pile, int reverse);
+void	pile_shift(t_p *pile, int reverse);
 int		command(t_p *a, t_p *b, char *cmd);
 
 #endif

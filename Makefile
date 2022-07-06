@@ -18,10 +18,9 @@ SRCS		=	srcs/main.c \
 				srcs/check.c \
 				srcs/pile.c \
 				srcs/command.c \
-				srcs/command_utils.c \
 				srcs/sort_small.c \
 				srcs/sort_big.c \
-				srcs/functions.c \
+				srcs/utils.c \
 
 LIBFT		=	libft/libft.a
 CFLAGS		=	-Wall -Wextra -Werror
