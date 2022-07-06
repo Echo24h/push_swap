@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 18:00:09 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/03 15:09:14 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,21 @@ int	find_the_pivot(t_p *p, int start, int end, int count)
 
 void	push_i_nbr_atob(t_p *a, t_p *b, int *count, int i_nbr)
 {
-	if (i_nbr < a->temp_size / 2)
+	//printf("i_nbr = %d, a->temp_size = %d\n", i_nbr, a->temp_size);
+	if (i_nbr >= a->temp_size / 2)
 	{
-		while (i_nbr >= 0)
+		while (i_nbr != a->temp_size + 1)
 		{
 			*count += command(a, b, "rra");
-			i_nbr--;
+			i_nbr++;
 		}
 	}
-	else if (i_nbr >= a->temp_size / 2)
+	else if (i_nbr < a->temp_size / 2)
 	{
-		while (i_nbr < a->temp_size)
+		while (i_nbr > 0)
 		{
 			*count += command(a, b, "ra");
-			i_nbr++;
+			i_nbr--;
 		}
 	}
 	*count += command(a, b, "pb");
@@ -98,7 +99,7 @@ void	push_i_nbr_btoa(t_p *a, t_p *b, int *count, int i_nbr)
 	{
 		while (i_nbr >= 0)
 		{
-			*count += command(a, b, "rrb");
+			*count += command(a, b, "rb");
 			i_nbr--;
 		}
 	}
@@ -106,7 +107,7 @@ void	push_i_nbr_btoa(t_p *a, t_p *b, int *count, int i_nbr)
 	{
 		while (i_nbr < b->temp_size)
 		{
-			*count += command(a, b, "rb");
+			*count += command(a, b, "rrb");
 			i_nbr++;
 		}
 	}

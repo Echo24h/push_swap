@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 23:02:46 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/03 15:55:23 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	sort_bigbig_stack(t_p *a, t_p *b, int box_size)
 		{
 			if (pivot == nb_min && b->temp_size == a->size % box_size)
 				break;
-			if (a->nbr[a->temp_size] >= pivot && a->nbr[a->temp_size] < last_pivot)
+			if (a->nbr[0] >= pivot && a->nbr[0] < last_pivot)
 			{
 				count += command(a, b, "pb");
 				rest_sort--;
 			}
 			else
-				count += command(a, b, "ra");
+				count += command(a, b, "rra");
 		}
 		i++;
 		last_pivot = pivot;
@@ -54,7 +54,7 @@ int	sort_bigbig_stack(t_p *a, t_p *b, int box_size)
 	// ont trie le reste
 	i = -1;
 	pivot = find_the_bigger(a, 0, a->size, INT_MAX);
-	while (a->nbr[a->temp_size] != a->nbr[pivot])
+	while (a->nbr[0] != a->nbr[pivot])
 		count += command(a, b, "pb");
 	sort_b_pile(a, b, &count);
 	//ft_printf("\nFIN : box_size :%d, last_pivot :%d\n", box_size, last_pivot);

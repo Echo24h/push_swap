@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 23:48:45 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/03 14:20:16 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	sort_pile(t_p *a, t_p *b)
 {
-	
+
 	if (a->size < 6)
 		return (sort_small_stack(a, b));
 	else if (a->size < 16)

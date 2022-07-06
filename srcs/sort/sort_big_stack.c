@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/02 23:56:45 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/03 13:41:34 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	sort_b_pile(t_p *a, t_p *b, int *count)
 		else
 		{
 			push_i_nbr_btoa(a, b, count, i_max);
-			*count += command(a, b, "ra");
+			*count += command(a, b, "rra");
 			i_temp--;
 		}
 	}
 	while (--i_temp >= 0)
-		*count += command(a, b, "ra");
+		*count += command(a, b, "rra");
 }
 
 int	sort_big_stack(t_p *a, t_p *b)
@@ -51,7 +51,7 @@ int	sort_big_stack(t_p *a, t_p *b)
 	pivot = find_the_pivot(a, 0, a->size, -1);
 	while (a->temp_size >= a->size / 2)
 	{
-		if (a->nbr[a->temp_size] >= pivot)
+		if (a->nbr[0] >= pivot)
 		{
 			count += command(a, b, "pb");
 		}
