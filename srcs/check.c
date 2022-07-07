@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:48:52 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 16:21:01 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:26:05 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,21 @@ static int	check_nbr(char **list)
 
 	i = 0;
 	if (list == NULL || list[0][0] == 0)
-		return (0);
+		return (1);
 	while (list[i])
 	{
 		j = 0;
-		if(list[i][j] == '-' || list[i][j] == '+')
+		if (list[i][j] == '-' || list[i][j] == '+')
 			j++;
 		while (list[i][j])
 		{
 			if (!ft_isdigit(list[i][j]))
-			{
-				write(1, "Error\nWrong number\n", 20);
-				return (0);
-			}
+				return (write(1, "Error\nWrong number\n", 20));
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static int	check_double(char **list)
@@ -51,15 +48,12 @@ static int	check_double(char **list)
 		while (list[j])
 		{
 			if (!ft_strcmp(list[i], list[j]))
-			{
-				write(1, "Error\nSimilar number\n", 22);
-				return (0);
-			}
+				return (write(1, "Error\nSimilar number\n", 22));
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static int	check_max(char **list)
@@ -68,27 +62,21 @@ static int	check_max(char **list)
 	int	is_pos;
 
 	i = 0;
-	is_pos = 0;
 	while (list[i])
 	{
+		is_pos = 0;
 		if (list[i][0] != '-')
 			is_pos = 1;
 		if (is_pos && ft_strlen(list[i]) == ft_strlen("2147483647"))
 		{
 			if (ft_strcmp(list[i], "2147483647") > 0)
-			{
-				ft_printf("ERROR : check.c -> check_max()\n");
-				return (0);
-			}
+				return (write(1, "Error\ncheck.c -> check_max()\n", 30));
 		}
 		else if (is_pos && ft_strlen(list[i]) > ft_strlen("2147483647"))
-		{
-			ft_printf("ERROR : check.c -> check_max()\n");
-			return (0);
-		}
+			return (write(1, "Error\ncheck.c -> check_max()\n", 30));
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static int	check_min(char **list)
@@ -97,35 +85,29 @@ static int	check_min(char **list)
 	int	is_neg;
 
 	i = 0;
-	is_neg = 0;
 	while (list[i])
 	{
+		is_neg = 0;
 		if (list[i][0] == '-')
 			is_neg = 1;
 		if (is_neg && ft_strlen(list[i]) == ft_strlen("-2147483648"))
 		{
-			if (ft_strcmp(list[i], "-2147483648") > 0)
-			{
-				printf("ERROR : check.c -> check_min()\n");
-				return (0);
-			}
+			if (ft_strcmp(list[i], "-2147483647") > 0)
+				return (write(1, "Error\ncheck.c -> check_min()\n", 30));
 		}
 		else if (is_neg && ft_strlen(list[i]) > ft_strlen("-2147483648"))
-		{
-
-			printf("ERROR : check.c -> check_min()\n");
-			return (0);
-		}
+			return (write(1, "Error\ncheck.c -> check_min()\n", 30));
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	check(char **list)
 {
 	if (!list)
 		return (0);
-	if (check_nbr(list) && check_double(list) && check_max(list) && check_min(list))
+	if (!check_nbr(list) && !check_double(list)
+		&& !check_max(list) && !check_min(list))
 		return (1);
 	return (0);
 }

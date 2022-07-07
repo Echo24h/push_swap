@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 01:15:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 19:04:32 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:26:10 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	swap(t_p *p)
 {
 	int	temp;
+
 	temp = p->nbr[1];
 	p->nbr[1] = p->nbr[0];
 	p->nbr[0] = temp;
@@ -36,7 +37,7 @@ static void	rotate(t_p *p)
 
 	i = 0;
 	temp = p->nbr[0];
-	while(i < p->temp_size)
+	while (i < p->temp_size)
 	{
 		p->nbr[i] = p->nbr[i + 1];
 		i++;
@@ -51,7 +52,7 @@ static void	reverse_rotate(t_p *p)
 
 	i_max = p->temp_size;
 	temp = p->nbr[i_max];
-	while(i_max > 0)
+	while (i_max > 0)
 	{
 		p->nbr[i_max] = p->nbr[i_max - 1];
 		i_max--;
@@ -80,7 +81,5 @@ int	command(t_p *a, t_p *b, char *cmd)
 		reverse_rotate(b);
 	else
 		return (0);
-	//pile_print(*a);
-	//pile_print(*b);
 	return (1);
 }

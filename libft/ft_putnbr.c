@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 03:05:53 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/25 03:05:56 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:59:47 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr(int n)
 {
-	unsigned int numb;
+	unsigned int	numb;
 
 	if (n < 0)
 	{

@@ -6,11 +6,23 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:03:12 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 19:00:23 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:12:34 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static t_s	init_data(int nb_min, int rest_sort, int box_size)
+{
+	t_s	s;
+
+	s.pivot = INT_MAX;
+	s.last_pivot = INT_MAX;
+	s.nb_min = nb_min;
+	s.rest_sort = rest_sort;
+	s.box_size = box_size;
+	return (s);
+}
 
 static void	sort_b(t_p *a, t_p *b)
 {
@@ -37,42 +49,42 @@ static void	sort_b(t_p *a, t_p *b)
 	}
 }
 
+static void	push_range(t_s *s, t_p *a, t_p *b)
+{
+	while (b->temp_size < s->box_size - 1)
+	{
+		if (s->pivot == s->nb_min && b->temp_size == a->size % s->box_size)
+			break ;
+		if (a->nbr[0] >= s->pivot && a->nbr[0] < s->last_pivot)
+		{
+			command(a, b, "pb");
+			s->rest_sort--;
+		}
+		else
+			command(a, b, "ra");
+	}
+}
+
 int	sort_big(t_p *a, t_p *b, int box_size)
 {
-	int	pivot;
-	int	last_pivot;
+	t_s	s;
 	int	i;
-	int	rest_sort;
-	int	nb_min;
-	
+
+	s = init_data(a->nbr[get_miner(a, 0, a->size, INT_MIN)],
+			a->size + 1, box_size);
 	i = 1;
-	pivot = INT_MAX;
-	last_pivot = INT_MAX;
-	rest_sort = a->size + 1;
-	nb_min = a->nbr[get_miner(a, 0, a->size, INT_MIN)];
-	while (rest_sort)
+	while (s.rest_sort)
 	{
 		sort_b(a, b);
-		pivot = get_pivot(a, 0, a->size, box_size * i);
-		if (pivot == INT_MIN)
-			break;
-		while (b->temp_size < box_size - 1)
-		{
-			if (pivot == nb_min && b->temp_size == a->size % box_size)
-				break;
-			if (a->nbr[0] >= pivot && a->nbr[0] < last_pivot)
-			{
-				command(a, b, "pb");
-				rest_sort--;
-			}
-			else
-				command(a, b, "ra");
-		}
+		s.pivot = get_pivot(a, 0, a->size, s.box_size * i);
+		if (s.pivot == INT_MIN)
+			break ;
+		push_range(&s, a, b);
+		s.last_pivot = s.pivot;
 		i++;
-		last_pivot = pivot;
 	}
 	sort_b(a, b);
-	while(a->nbr[0] != nb_min)
+	while (a->nbr[0] != s.nb_min)
 		command(a, b, "rra");
 	return (1);
 }

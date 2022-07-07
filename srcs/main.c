@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:19:30 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 19:00:16 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:16:19 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	free_list(char **list)
 
 	i = 0;
 	if (list == NULL)
-		return;
+		return ;
 	while (list[i])
 	{
 		free(list[i]);
@@ -54,10 +54,10 @@ static char	**create_list(int argc, char **argv)
 	return (list);
 }
 
-int	is_sort(t_p	*p)
+static int	is_sort(t_p	*p)
 {
 	int	i;
-	
+
 	i = 0;
 	while (++i <= p->size)
 		if (p->nbr[i] < p->nbr[i - 1])
@@ -65,23 +65,26 @@ int	is_sort(t_p	*p)
 	return (1);
 }
 
-int	sort(t_p *a, t_p *b)
+static int	sort(t_p *a, t_p *b)
 {
-
 	if (a->size < 6)
 		return (sort_small(a, b));
-	else if ( a->size < 400)
-		return (sort_big(a, b, ((a->size + 1) / 4)));
-	else if ( a->size < 1000)
-		return (sort_big(a, b, ((a->size + 1) / 10)));
+	else if (a->size < 10)
+		return (sort_big(a, b, a->size + 1));
+	else if (a->size < 20)
+		return (sort_big(a, b, (a->size + 1) / 2));
+	else if (a->size < 400)
+		return (sort_big(a, b, (a->size + 1) / 4));
+	else if (a->size < 1000)
+		return (sort_big(a, b, (a->size + 1) / 10));
 	else
-		return (sort_big(a, b, ((a->size + 1) / 20)));
+		return (sort_big(a, b, (a->size + 1) / 20));
 }
 
 int	main(int argc, char **argv)
 {
-	t_p 	a;
-	t_p 	b;
+	t_p		a;
+	t_p		b;
 	char	**list;
 
 	list = create_list(argc, argv);
@@ -95,13 +98,8 @@ int	main(int argc, char **argv)
 	b = pile_init(a.size);
 	if (a.nbr == NULL || b.nbr == NULL)
 		return (write(1, "Error\nLa pile n'a pas pu être créer\n", 39));
-	//printf("\nInitialisation : \n");
-	//pile_print(a);
 	if (!is_sort(&a))
 		sort(&a, &b);
-	//printf("\nPile de %d nombres triée en %d coups :\n", a.size + 1, sort_pile(&a, &b));
-	//pile_print(a);
-	//pile_print(b);
 	pile_destroy(&b);
 	pile_destroy(&a);
 	return (0);

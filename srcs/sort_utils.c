@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 01:11:34 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/06 19:04:44 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:12:51 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_bigger(t_p *p, int start, int end, int value_max)
 	nb_big = INT_MIN;
 	while (start <= end)
 	{
-		if(p->nbr[start] >= nb_big && p->nbr[start] <= value_max)
+		if (p->nbr[start] >= nb_big && p->nbr[start] <= value_max)
 		{
 			i_big = start;
 			nb_big = p->nbr[start];

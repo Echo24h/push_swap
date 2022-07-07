@@ -6,13 +6,13 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 03:03:11 by gborne            #+#    #+#             */
-/*   Updated: 2022/01/25 03:03:24 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:00:28 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strcmp(const char *str1, const char *str2)
+int	ft_strcmp(const char *str1, const char *str2)
 {
 	size_t	i;
 
